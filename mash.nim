@@ -259,6 +259,7 @@ proc eventHandler() =
         # ignore repeat (which would be 2'i32)
         echo "Ignoring event"
         discard
+  echo "Handler exited"
 
 proc `[]=`(s: ptr MidiData; i: int8; x: uint8) =
   cast[ptr UncheckedArray[MidiData]](s)[i] = x
