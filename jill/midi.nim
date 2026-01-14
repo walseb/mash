@@ -1,5 +1,5 @@
 
-import jill, jacket
+import "../jill", "../jacket"
 
 iterator read*(buffer: MidiBuffer): MidiEvent =
   var event: MidiEvent = cast[MidiEvent](alloc(sizeof(MidiEventT)))

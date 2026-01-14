@@ -1,4 +1,4 @@
-import jacket
+import "../jacket"
 
 type
   RingBuffer*[T] = object
