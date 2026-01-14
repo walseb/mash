@@ -221,7 +221,7 @@ var
   # command line option specific state
   latencyPeriods = 2
   eventThreadPriority = 98
-  keyboardPath = "/dev/input/event3"
+  keyboardPath = "/dev/input/event17"
   keyboardDevice: File
 
   # midiwriter State
