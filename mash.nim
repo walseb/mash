@@ -369,8 +369,8 @@ for kind, key, val in optParser.getopt():
       usage()
   of cmdArgument:
     keyboardPath = key
-    if not keyboardPath.startsWith "/dev/input":
-      stderr.write "Your keyboard input should start with /dev/input.\n"
+    if not keyboardPath.startsWith "/dev":
+      stderr.write "Your keyboard input should start with /dev.\n"
       quit 1
   of cmdEnd:
     break
