@@ -372,20 +372,29 @@ for kind, key, val in optParser.getopt():
   of cmdEnd:
     break
 
+echo "1"
 keyboardDevice = openDevice(keyboardPath)
 
+echo "2"
 createThread signalThread, proc() {.thread.} =
   waitSignals(SIGABRT, SIGHUP, SIGINT, SIGQUIT, SIGTERM):
     terminating = true
 
+echo "3"
 blockSignals(SIGABRT, SIGHUP, SIGINT, SIGQUIT, SIGTERM)
 
+echo "4"
 midiWriterClient = clientOpen("mash", NoStartServer or UseExactName, midiWriterStatus.addr)
+echo "5"
 assert not midiWriterClient.isNil, "Could not create jack client, jack may not be running"
+echo "6"
 midiPort = midiWriterClient.portRegister("out", JackDefaultMidiType, PortIsOutput, 0)
+echo "7"
 assert midiWriterClient.setProcessCallback(midiWriter) == 0, "could not set process callback"
+echo "8"
 
 eventBuffer.lock()
+echo "9"
 
 assert midiWriterClient.activate() == 0, "Could not connect jack"
 
@@ -393,7 +402,10 @@ echo "Before creating thread"
 createRealtimeThread(eventThread, eventHandler, priority=cint eventThreadPriority)
 echo "After creating thread"
 joinThread(eventThread)  # exit when input thread does, it's simpler not to have to kill it
+echo "10"
 
 midiWriterClient.deactivate
+echo "11"
 midiWriterClient.clientClose
+echo "12"
 
