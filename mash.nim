@@ -389,7 +389,9 @@ eventBuffer.lock()
 
 assert midiWriterClient.activate() == 0, "Could not connect jack"
 
+echo "Before creating thread"
 createRealtimeThread(eventThread, eventHandler, priority=cint eventThreadPriority)
+echo "After creating thread"
 joinThread(eventThread)  # exit when input thread does, it's simpler not to have to kill it
 
 midiWriterClient.deactivate
