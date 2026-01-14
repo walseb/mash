@@ -378,6 +378,7 @@ keyboardDevice = openDevice(keyboardPath)
 echo "2"
 createThread signalThread, proc() {.thread.} =
   waitSignals(SIGABRT, SIGHUP, SIGINT, SIGQUIT, SIGTERM):
+    echo "term"
     terminating = true
 
 echo "3"
