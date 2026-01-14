@@ -63,7 +63,7 @@ proc ioctl(f: FileHandle, request: culong, arg: pointer): cint {.importc: "ioctl
 proc openDevice(path: string): File =
   result = open(path)
   var clk = CLOCK_MONOTONIC
-  assert ioctl(result.getOSFileHandle, EVIOCSCLOCKID, clk.addr) == 0, "Could not set input subsystem to monotonic time"
+  # assert ioctl(result.getOSFileHandle, EVIOCSCLOCKID, clk.addr) == 0, "Could not set input subsystem to monotonic time"
 
 proc newInputEvent(rawEvent: RawKeyboardEvent): InputEvent =
   # echo "> ", scancode
