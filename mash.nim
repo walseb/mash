@@ -240,6 +240,7 @@ var
   channel: int8
 
 proc eventHandler() =
+  echo "Event handler init"
   while not terminating:
     var rawEvent:RawKeyboardEvent
     if keyboardDevice.readBuffer(rawEvent.addr, sizeof RawKeyboardEvent) != sizeof RawKeyboardEvent:
