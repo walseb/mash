@@ -243,11 +243,10 @@ proc eventHandler() =
   echo "Event handler init"
   while not terminating:
     var rawEvent:RawKeyboardEvent
-    keyboardDevice.readBuffer(rawEvent.addr, sizeof RawKeyboardEvent)
-    # if keyboardDevice.readBuffer(rawEvent.addr, sizeof RawKeyboardEvent) != sizeof RawKeyboardEvent:
-    #   # skip oddly-sized reads- should not happen
-    #   echo "Got event"
-    #   continue
+    if keyboardDevice.readBuffer(rawEvent.addr, sizeof RawKeyboardEvent) != sizeof RawKeyboardEvent:
+      # skip oddly-sized reads- should not happen
+      echo "Event skipped"
+      continue
     echo "Got event"
     if rawEvent.kind == 1'u16:  # ensure keyboard events only
       case rawEvent.value
