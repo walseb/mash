@@ -250,13 +250,13 @@ proc eventHandler() =
       case rawEvent.value
       of 0'i32, 1'i32:  # press and release only
         try:
-	  echo "Pushing event"
+          echo "Pushing event"
           eventBuffer.push(newInputEvent(rawEvent))
         except ValueError:
           discard
       else:
         # ignore repeat (which would be 2'i32)
-	echo "Ignoring event"
+        echo "Ignoring event"
         discard
 
 proc `[]=`(s: ptr MidiData; i: int8; x: uint8) =
